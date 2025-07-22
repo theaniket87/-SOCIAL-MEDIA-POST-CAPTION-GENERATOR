@@ -1,0 +1,329 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+<title>Social Media Post & Caption Generator</title> 
+<script src="https://cdn.tailwindcss.com"></script> 
+<style> 
+/* Custom scrollbar for #results */ 
+#results::-webkit-scrollbar { 
+width: 8px; 
+} 
+#results::-webkit-scrollbar-thumb { 
+background-color: #4ade80; /* green-400 */ 
+border-radius: 4px; 
+} 
+/* Animate pulse-green */ 
+@keyframes pulse-green { 
+0%, 100% { 
+background-color: #a7f3d0; 
+} 
+50% { 
+background-color: #34d399; 
+} 
+} 
+.pulse-green { 
+animation: pulse-green 2s infinite; 
+} 
+</style> 
+</head> 
+<body class="bg-gray-50 min-h-screen flex flex-col"> 
+<header class="bg-white shadow-md"> 
+<div class="max-w-7xl mx-auto px-4 py-5 flex items-center gap-4"> 
+<div class="text-blue-800 font-extrabold text-xl select-none flex items
+center gap-2"> 
+<svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" 
+stroke-linecap="round" 
+stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" 
+focusable="false" aria-label="IBM Logo"> 
+<path d="M3 7h18M3 12h18M3 17h18"></path> 
+</svg> 
+IBM 
+</div> 
+<h1 class="text-2xl font-semibold text-gray-900">Social Media Post & 
+Caption Generator</h1> 
+</div> 
+</header> 
+<main class="flex-grow max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 md:grid
+cols-3 gap-8"> 
+<!-- Left Section: Form and inputs --> 
+<section class="md:col-span-2 bg-white rounded-xl shadow-md p-6 flex flex
+col"> 
+<div class="mb-6"> 
+<img class="w-full rounded-lg shadow-lg object-cover h-56 md:h-72" 
+src="https://placehold.co/640x360/png?text=AI+Social+Media+Post+Generato
+ r+Colorful+Artistic+Collage" 
+alt="Colorful artistic digital illustration featuring AI technology, women 
+holding infants, agriculture icons, and vibrant Indian motifs symbolizing 
+technology and nourishment" loading="lazy" /> 
+</div> 
+<form id="postForm" class="flex flex-col gap-5" novalidate> 
+<label for="keywords" class="font-semibold text-gray-800">Enter 
+Keywords or Themes</label> 
+<input type="text" id="keywords" name="keywords" placeholder="E.g., 
+summer, fitness, motivation" 
+class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none 
+focus:ring-2 focus:ring-green-400" 
+required autocomplete="off" /> 
+<label for="platform" class="font-semibold text-gray-800">Select Social 
+Media Platform</label> 
+<select id="platform" name="platform" class="border border-gray-300 
+rounded-md px-4 py-2 cursor-pointer focus:outline-none focus:ring-2 
+focus:ring-green-400" 
+required> 
+<option value="" disabled selected>Choose a platform</option> 
+<option value="Instagram">Instagram</option> 
+<option value="LinkedIn">LinkedIn</option> 
+<option value="Twitter">Twitter</option> 
+<option value="Facebook">Facebook</option> 
+<option value="TikTok">TikTok</option> 
+<option value="Pinterest">Pinterest</option> 
+</select> 
+<button type="submit" 
+class="self-start bg-green-600 hover:bg-green-700 text-white font
+semibold py-2 px-6 rounded-md transition focus:ring-4 focus:ring-green-300 
+focus:outline-none"> 
+Generate Post & Captions 
+</button> 
+</form> 
+<div id="results" class="mt-6 bg-green-50 rounded-md p-4 max-h-[350px] 
+overflow-y-auto shadow-inner hidden" 
+aria-live="polite"> 
+<!-- Results will appear here --> 
+</div> 
+</section> 
+<!-- Right Section: Project Details --> 
+<aside 
+class="bg-white rounded-xl shadow-md p-6 flex flex-col gap-6 sticky top-8 h
+f
+ it min-w-[250px] border border-gray-200"> 
+<h2 class="text-lg font-bold border-b border-green-400 pb-1 flex items
+center gap-2"><svg class="w-6 h-6 stroke-green-600" 
+f
+ ill="none" stroke-width="2" stroke-linecap="round" stroke
+linejoin="round" viewBox="0 0 24 24" 
+aria-hidden="true"> 
+<path d="M9 12h6M9 16h6M9 8h6M5 21h14a2 2 0 002-2V7a2 2 0 00-2
+2h-4"></path> 
+</svg> Project Details</h2> 
+<dl> 
+<dt class="font-semibold text-green-600">Technology</dt> 
+<dd class="mb-4"><span 
+class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded
+md font-medium cursor-default select-none">Generative AI</span> 
+</dd> 
+<dt class="font-semibold text-green-600">Difficulty Level</dt> 
+<dd> 
+<span 
+class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 
+rounded-md font-medium cursor-default select-none">Beginner</span> 
+</dd> 
+</dl> 
+<div class="mt-6 flex flex-col gap-3"> 
+<button 
+class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 
+px-4 rounded-md transition focus:ring-4 focus:ring-green-300 focus:outline
+none flex justify-center items-center gap-2" 
+id="submitAssignmentBtn"> 
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" 
+stroke-linecap="round" 
+stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"> 
+<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002
+2V8z"></path> 
+<path d="M14 2v6h6"></path> 
+</svg> 
+Submit Assignment 
+</button> 
+<button 
+class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 
+px-4 rounded-md transition focus:ring-4 focus:ring-green-300 focus:outline
+none flex justify-center items-center gap-2" 
+id="submitProjectBtn"> 
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" 
+stroke-linecap="round" 
+stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"> 
+<path d="M9 17v-6h13v6a2 2 0 01-2 2H9z"></path> 
+<path d="M13 9V3H6a2 2 0 00-2 2v12a2 2 0 002 2h7v-8z"></path> 
+</svg> 
+Submit Project 
+</button> 
+</div> 
+</aside> 
+</main> 
+<footer class="bg-white border-t border-gray-200 text-center text-gray-600 
+text-sm py-2 select-none"> 
+© 2025 IBM Training & Project Portal 
+</footer> 
+<script> 
+// This script generates social media captions, hashtags, and emojis based on 
+user input keywords & platform 
+// Mapping for platform-specific tone or style (basic examples) 
+const platformToneMap = { 
+Instagram: { 
+intro: "✨ Check this out! ✨ ", 
+hashtags: ["#instagood", "#photooftheday", "#instadaily", "#love", 
+"#followme"], 
+emojiPool: ["📸", "✨", "❤️", "🔥", "🌟"], 
+}, 
+LinkedIn: { 
+intro: "Professional insights: ", 
+hashtags: ["#LinkedIn", "#Career", "#Business", "#Networking", 
+"#Leadership"], 
+emojiPool: ["💼", "📈", "🤝", "🧠", "🌐"], 
+}, 
+Twitter: { 
+intro: "News & updates: ", 
+hashtags: ["#Breaking", "#Trending", "#News", "#Tweet", "#Social"], 
+emojiPool: ["🐦", "⚡", "🔥", "🗞️", "💬"], 
+}, 
+Facebook: { 
+intro: "Sharing some moments: ", 
+hashtags: ["#Family", "#Friends", "#GoodTimes", "#Life", "#Memories"], 
+emojiPool: ["👨👩👧👦", "❤️", "😊", "🎉", "🏡"], 
+}, 
+TikTok: { 
+intro: "Let's get viral! ", 
+hashtags: ["#fyp", "#ForYou", "#TikTokTrend", "#Viral", "#Dance"], 
+emojiPool: ["🎵", "💃", "🎬", "🔥", "📱"], 
+}, 
+Pinterest: { 
+intro: "Inspirations & ideas: ", 
+hashtags: ["#Design", "#DIY", "#Inspiration", "#Craft", "#Pinterest"], 
+emojiPool: ["🎨", "✂️", "💡", "🌸", "📌"], 
+} 
+}; 
+// Utility function to generate relevant hashtags from keywords 
+function generateHashtags(keywords) { 
+// Clean keywords, split by comma or space 
+let words = keywords.toLowerCase() 
+.split(/[\s,]+/) 
+.filter(w => w.length > 2 && !["the", "and", "for", "with", 
+"you"].includes(w)); 
+// Avoid duplicates and sort 
+const uniqueWords = [...new Set(words)]; 
+// Convert words to hashtags, removing non-alphanumeric 
+return uniqueWords.map(word => '#' + word.replace(/[^a-z0-9]/gi, '')); 
+} 
+// Utility function to pick emojis related to keywords (simple keyword 
+mapping) 
+function selectEmojis(keywords) { 
+// Basic example: mapping small keyword buckets to emojis 
+const emojiMap = { 
+love: "❤️", 
+happy: "😊", 
+f
+ itness: "🏋️♂️", 
+summer: "☀️", 
+food: "🍕", 
+travel: "✈️", 
+nature: "🌿", 
+work: "💼", 
+music: "🎵", 
+art: "🎨", 
+tech: "💻", 
+baby: "👶", 
+motivation: "💪", 
+party: "🎉", 
+}; 
+let words = keywords.toLowerCase().split(/[\s,]+/); 
+let foundEmojis = []; 
+words.forEach(w => { 
+if (emojiMap[w] && !foundEmojis.includes(emojiMap[w])) { 
+foundEmojis.push(emojiMap[w]); 
+} 
+}); 
+// If none found, return some generic smiley 
+if (foundEmojis.length === 0) { 
+foundEmojis = ["✨", "🌟", "🔥"]; 
+} 
+return foundEmojis.slice(0, 3); 
+} 
+// Compose a caption combining basic intro, emojis and hashtags 
+function createCaption(keywords, platform) { 
+const tone = platformToneMap[platform] || { 
+intro: "", 
+hashtags: [], 
+emojiPool: ["✨", "😊", "🔥"], 
+}; 
+// Generate hashtags from keywords 
+const baseHashtags = generateHashtags(keywords); 
+// Select emojis from keywords and platform emoji pool 
+const keywordEmojis = selectEmojis(keywords); 
+const emojis = [...new Set([...keywordEmojis, ...tone.emojiPool])].slice(0, 
+5).join(' '); 
+// Compose caption text 
+const captionIntro = tone.intro ? tone.intro : ""; 
+const bodyText = `Discover more about ${keywords.trim()}. ${emojis}`; 
+// Shuffle and combine unique hashtags capped at 7 including platform 
+hashtags 
+const combinedHashtags = [...new Set([...baseHashtags, 
+...tone.hashtags])].slice(0, 7); 
+return `${captionIntro}${bodyText}\n\n${combinedHashtags.join(' ')}`; 
+} 
+// Handles form submission and display result 
+document.getElementById('postForm').addEventListener('submit', function 
+(e) { 
+e.preventDefault(); 
+const keywordsInput = document.getElementById('keywords'); 
+const platformInput = document.getElementById('platform'); 
+const resultsDiv = document.getElementById('results'); 
+const keywords = keywordsInput.value.trim(); 
+const platform = platformInput.value; 
+// Simple form validation 
+if (!keywords) { 
+alert("Please enter keywords or themes."); 
+keywordsInput.focus(); 
+return; 
+} 
+if (!platform) { 
+alert("Please select a social media platform."); 
+platformInput.focus(); 
+return; 
+} 
+// Show loading pulse effect while "generating" 
+resultsDiv.classList.remove('hidden'); 
+resultsDiv.innerHTML = '<p class="text-green-700 font-semibold pulse-green 
+p-3 rounded-md">Generating your post, please wait...</p>'; 
+setTimeout(() => { 
+// Generate caption 
+const caption = createCaption(keywords, platform); 
+// Clear and show result nicely formatted 
+resultsDiv.innerHTML = ` 
+<h3 class="font-bold text-green-800 text-lg mb-3">Generated Caption for 
+<span class="capitalize">${platform}</span>:</h3> 
+<textarea readonly rows="7" class="w-full border border-green-300 
+rounded-md p-3 font-mono text-sm resize-none">${caption}</textarea> 
+<button id="copyBtn" aria-label="Copy caption to clipboard" 
+class="mt-3 bg-green-600 hover:bg-green-700 text-white font-semibold 
+py-2 px-4 rounded-md transition focus:ring-4 focus:ring-green-300 
+focus:outline-none"> 
+Copy Caption 
+</button> 
+`; 
+// Copy to clipboard functionality 
+const copyBtn = document.getElementById('copyBtn'); 
+copyBtn.addEventListener('click', () => { 
+navigator.clipboard.writeText(caption).then(() => { 
+copyBtn.textContent = "Copied!"; 
+setTimeout(() => copyBtn.textContent = "Copy Caption", 2000); 
+}).catch(() => { 
+alert("Failed to copy. Please copy manually."); 
+}); 
+}); 
+}, 1200); 
+}); 
+// Submit Assignment & Project buttons behaviors 
+document.getElementById('submitAssignmentBtn').addEventListener('click', 
+() => { 
+alert("Assignment submission is currently not implemented in this 
+demo.\nPlease implement backend integration."); 
+}); 
+document.getElementById('submitProjectBtn').addEventListener('click', () => 
+{ 
+alert("Project submission is currently not implemented in this 
+demo.\nPlease implement backend integration."); 
+}); 
+</script> 
+</body> 
+</html>
